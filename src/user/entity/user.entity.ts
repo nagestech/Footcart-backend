@@ -16,7 +16,9 @@ class User{
     @Column()
        alternatenumber:number;   
     @Column()
-       password:string;          
+       password:string;   
+    @Column({type:'blob'})
+       image:Buffer        
 }
 export default User
 

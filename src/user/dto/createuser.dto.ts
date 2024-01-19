@@ -23,7 +23,11 @@ export class CreateUserDto{
   @IsEmpty()
     alternatenumber:number;   
 
- @IsNotEmpty()
- @MinLength(6,{message:'password atleast 6 characters'})
-   password:string;     
+  @IsNotEmpty()
+  @MinLength(6,{message:'password atleast 6 characters'})
+    password:string; 
+
+  @IsNotEmpty()
+     image:Buffer 
+    
 }
