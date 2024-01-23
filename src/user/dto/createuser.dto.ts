@@ -1,4 +1,4 @@
-import { IsEmail, IsEmpty, IsInt, IsNotEmpty, IsNumber, IsString, MinLength } from "class-validator";
+import { IsEmail, IsEmpty, IsNotEmpty, IsString, MinLength } from "class-validator";
 
 
 export class CreateUserDto{
@@ -16,14 +16,18 @@ export class CreateUserDto{
      address:string;
 
   @IsNotEmpty()
-  @IsNumber()
-    mobilenumber:number;  
+  @IsString()
+    mobilenumber:string;  
     
-  @IsNumber()
+  @IsString()
   @IsEmpty()
-    alternatenumber:number;   
+    alternatenumber:string;   
 
   @IsNotEmpty()
   @MinLength(6,{message:'password atleast 6 characters'})
-    password:string;    
+    password:string; 
+
+  @IsEmpty() 
+    image:string;   
+
 }

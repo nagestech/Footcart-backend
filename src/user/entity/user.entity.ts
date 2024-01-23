@@ -12,13 +12,13 @@ class User{
     @Column()
         address:string;   
     @Column()
-       mobilenumber:number;
+       mobilenumber:string;
     @Column()
-       alternatenumber:number;   
+       alternatenumber:string;   
     @Column()
        password:string;   
-  
-     
+    @Column({ type: 'varchar', length: 300, nullable: true })
+       image: string;   
 }
 export default User
 
