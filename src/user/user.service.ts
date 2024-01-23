@@ -38,4 +38,9 @@ export class UserService {
         await this.userRepository.remove(user);
         return user;
       }
+       async update(id: number, user: Partial<User>): Promise<User> {
+        await this.userRepository.update(id, user);
+        return this.userRepository.findOne({ where: { id } });
+      }
+       
 }
