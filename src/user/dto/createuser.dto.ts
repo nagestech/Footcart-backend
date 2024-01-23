@@ -1,4 +1,4 @@
-import { IsEmail, IsEmpty, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsEmail, IsEmpty, IsNotEmpty, IsNumber, IsString, MinLength } from "class-validator";
 
 
 export class CreateUserDto{
@@ -27,7 +27,5 @@ export class CreateUserDto{
   @MinLength(6,{message:'password atleast 6 characters'})
     password:string; 
 
-  @IsEmpty() 
-    image:string;   
 
 }
