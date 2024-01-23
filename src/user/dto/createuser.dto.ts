@@ -25,9 +25,5 @@ export class CreateUserDto{
 
   @IsNotEmpty()
   @MinLength(6,{message:'password atleast 6 characters'})
-    password:string; 
-
-  @IsNotEmpty()
-     image:Buffer 
-    
+    password:string;    
 }
