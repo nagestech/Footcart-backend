@@ -17,7 +17,7 @@ export class UserService {
     async getUser(id){
       const user=this.userRepository.findOne({
         where:{
-            id:id,      
+            userid:id,      
         },
       });
       if(user) {
@@ -30,7 +30,7 @@ export class UserService {
     }
     async deleteuser(id) {
         const user = await this.userRepository.findOne({
-          where: {id: id},
+          where: {userid: id},
         });
         if (!user) {
           return null;
@@ -38,9 +38,9 @@ export class UserService {
         await this.userRepository.remove(user);
         return user;
       }
-       async update(id: number, user: Partial<User>): Promise<User> {
-        await this.userRepository.update(id, user);
-        return this.userRepository.findOne({ where: { id } });
+       async update(userid: number, user: Partial<User>): Promise<User> {
+        await this.userRepository.update(userid, user);
+        return this.userRepository.findOne({ where: { userid } });
       }
        
 }

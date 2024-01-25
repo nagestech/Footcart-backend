@@ -2,9 +2,6 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseInterceptors
 import { UserService } from './user.service';
 import User from './entity/user.entity';
 import { CreateUserDto } from './dto/createuser.dto'
-import { FileInterceptor } from '@nestjs/platform-express/multer';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 @Controller('user')
 export class UserController {
     constructor(private readonly userService:UserService){}
@@ -21,16 +18,6 @@ export class UserController {
            return user
        }  
     @Post()
-    @UseInterceptors(FileInterceptor('file', {
-      storage: diskStorage({
-      destination: './uploads/files',
-      filename: (req, file, cb) => {
-         const randomName = Array(32).fill(null).map(() => 
-        (Math.round(Math.random() * 16)).toString(16)).join('');
-          return cb(null, `${randomName}${extname(file.originalname)}`);
-          },
-        }),
-       }))
        async addUser(@Body() createUserDto:CreateUserDto){
           const newuser=await this.userService.addUser(createUserDto)
           return newuser
