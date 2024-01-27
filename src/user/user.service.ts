@@ -13,6 +13,12 @@ export class UserService {
     async getAllUser(){
       const users=this.userRepository.find();
       return users;
+
+
+    }
+
+    async findOne(username){
+      return this.userRepository.findOne({where:{username}})
     }
     async getUser(id){
       const user=this.userRepository.findOne({
