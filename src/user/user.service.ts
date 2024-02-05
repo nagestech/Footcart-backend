@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import User from './entity/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/createuser.dto'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class UserService {
@@ -13,10 +14,7 @@ export class UserService {
     async getAllUser(){
       const users=this.userRepository.find();
       return users;
-
-
     }
-
     async findOne(username){
       return this.userRepository.findOne({where:{username}})
     }
@@ -32,7 +30,12 @@ export class UserService {
       throw new NotFoundException('could not found user')
     }
     async addUser(createUserDto:CreateUserDto){
-        return this.userRepository.save(createUserDto);
+      const salt= await bcrypt.genSalt();
+      const password=await bcrypt.hash(createUserDto.password,salt);
+      return this.userRepository.save({
+        ...createUserDto,
+        password
+      });
     }
     async deleteuser(id) {
         const user = await this.userRepository.findOne({
